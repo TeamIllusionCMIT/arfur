@@ -41,5 +41,11 @@ pub mod sparkmax {
                 );
             }
         }
+
+        #[tracing::instrument]
+        pub fn get_encoder(&self, encoder_type: Optional<i32>, counts_per_rev: Optional<i32>) -> f64 {
+            unsafe { self.handle.GetEncoder(encoder_type, counts_per_rev.unwrap_or(42)) }
+        }
+
     }
 }
